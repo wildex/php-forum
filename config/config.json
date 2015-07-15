@@ -1,5 +1,11 @@
 {
-  "database":{
-    "host" : "127.0.0.1"
+  "database" : {
+    "mongo" : {
+      "host" : "127.0.0.1",
+      "port" : "27017",
+      "user" : "",
+      "password" : "",
+      "db": "forum"
+    }
   }
 }

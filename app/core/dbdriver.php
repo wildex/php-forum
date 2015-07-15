@@ -6,8 +6,10 @@ namespace core;
 
 
 abstract class DBDriver {
-    abstract public function create();
-    abstract public function read();
-    abstract public function update();
-    abstract public function delete();
+    protected $_connection;
+
+    abstract public function create($table, $params);
+    abstract public function read($table, $params);
+    abstract public function update($table, $params);
+    abstract public function delete($table, $params);
 }
