@@ -12,4 +12,6 @@ abstract class DBDriver {
     abstract public function read($table, $params);
     abstract public function update($table, $params);
     abstract public function delete($table, $params);
+
+    abstract protected function parseParams($params);
 }

@@ -22,15 +22,26 @@ class Mongodb extends DBDriver{
     }
 
     public function create($table, $params) {
-        $this->_connection->$table->insert($params['document']);
+        $params = $this->parseParams($params);
+        $this->_connection->$table->insert($params['data']);
     }
+
     public function read($table, $params) {
+        $params = $this->parseParams($params);
         $this->_connection->$table->find($params['where']);
     }
+
     public function update($table, $params) {
+        $params = $this->parseParams($params);
         $this->_connection->$table->find($params['where']);
     }
+
     public function delete($table, $params) {
+        $params = $this->parseParams($params);
         $this->_connection->$table->remove($params);
+    }
+
+    protected function parseParams($params) {
+        return $params;
     }
 }
