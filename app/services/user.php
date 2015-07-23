@@ -6,16 +6,18 @@
 namespace services;
 
 
-class User {
-    public function register() {
+class User extends Service {
+
+    private function register() {
 
     }
 
-    public function confirmEmail() {
+    private function confirmEmail() {
 
     }
 
-    public function deleteUser() {
+    private function deleteUser() {
 
     }
+
 }

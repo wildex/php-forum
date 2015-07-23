@@ -6,17 +6,29 @@
 namespace services;
 
 
-class Forum {
+class Forum extends Service {
 
-    public function addForum() {
-
-    }
-
-    public function addTopic() {
+    private function listForums() {
 
     }
 
-    public function addPost() {
+    private function listTopics() {
+
+    }
+
+    private function showTopic() {
+
+    }
+
+    private function addForum() {
+
+    }
+
+    private function addTopic() {
+
+    }
+
+    private function addPost() {
 
     }
 }

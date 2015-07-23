@@ -1,6 +1,7 @@
 <?php
 namespace core;
 
+use services;
 use Klein;
 
 class FrontController {
@@ -16,8 +17,13 @@ class FrontController {
     }
 
     private function registerRoutes() {
-        $this->_router->respond('GET', '/', function () {
-            return 'Hello World!';
+        $this->_router->respond('/[a:service]/[a:action]/', function ($request, $response) {
+            $service = 'services\\' . $request->service;
+            if(!class_exists($service)) {
+                throw new \Exception('Cannot find service');
+            }
+            $service = new $service();
+            return $service->run($request->action);
         });
     }
 }
