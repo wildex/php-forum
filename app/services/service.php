@@ -5,6 +5,7 @@
 
 namespace services;
 
+use core;
 use Twig_Environment, Twig_Loader_Filesystem;
 
 abstract class Service {
@@ -22,9 +23,15 @@ abstract class Service {
 
     /**
      * Return html page, or just json data.
+     *
+     * @param $action string action name (class method to call)
+     * @throws \core\ForumException
      */
     public function run($action = null) {
-        var_dump($action);die;
+        if(!method_exists($this, $action)) {
+            throw new core\ForumException(getRegistry()->get('translation')->translate('Not found.'), core\ForumException::ERR_404);
+        }
+        call_user_func(array($this, $action));
         // return html
         echo $this->_twig->render('', $this->_data);
         // return json data

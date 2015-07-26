@@ -20,7 +20,7 @@ class FrontController {
         $this->_router->respond('/[a:service]/[a:action]/', function ($request, $response) {
             $service = 'services\\' . $request->service;
             if(!class_exists($service)) {
-                throw new \Exception('Cannot find service');
+                throw new \Exception(getRegistry()->get('translation')->translate('Cannot find service'));
             }
             $service = new $service();
             return $service->run($request->action);

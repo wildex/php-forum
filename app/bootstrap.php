@@ -15,3 +15,5 @@ function getRegistry() {
 }
 
 getRegistry()->set('config', new \core\Config());
+
+getRegistry()->set('translation', new \core\Translation());

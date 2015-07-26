@@ -12,7 +12,7 @@ class Registry {
 
     public function set($key, $val) {
         if(array_key_exists($key, $this->_registry)) {
-            throw new \Exception('Registry slot already occupied');
+            throw new \Exception(getRegistry()->get('translation')->translate('Registry slot already occupied'));
         }
         $this->_registry[$key] = $val;
     }
