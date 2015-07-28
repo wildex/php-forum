@@ -6,7 +6,7 @@
 namespace core;
 
 
-class Mongodb extends DBDriver{
+class Mongodb extends DBDriver {
 
     public function __construct() {
         $params = getRegistry()->config->get('database.mongo');
@@ -18,7 +18,7 @@ class Mongodb extends DBDriver{
                 $params['port'],
                 $params['auth_db']
         );
-        $this->_connection =  new \MongoClient($url);
+        $this->_connection =  (new \MongoClient($url))->selectDB($params['db']);
     }
 
     public function create($table, $params) {

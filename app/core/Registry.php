@@ -8,7 +8,7 @@ namespace core;
 
 
 class Registry {
-    private $_registry = array();
+    private $_registry = [];
 
     public function set($key, $val) {
         if(array_key_exists($key, $this->_registry)) {
