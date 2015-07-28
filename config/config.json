@@ -3,8 +3,9 @@
     "mongo" : {
       "host" : "127.0.0.1",
       "port" : "27017",
-      "user" : "",
-      "password" : "",
+      "user" : "admin",
+      "password" : "admin",
+      "auth_db": "admin",
       "db": "forum"
     }
   },

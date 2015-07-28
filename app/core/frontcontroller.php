@@ -23,7 +23,7 @@ class FrontController {
     }
 
     private function registerRoutes() {
-        $this->_router->respond('/[a:service]?/[*:action]?/', function ($request, $response) {
+        $this->_router->respond('/[a:service]?/[*:action]?/[i:id]?/', function ($request, $response) {
             // Define default params
             $default_params = getRegistry()->get('config')->get('system.default_service');
             list($service, $action) = array_values($default_params);
@@ -34,7 +34,7 @@ class FrontController {
             if(!class_exists($service)) {
                 throw new \Exception(getRegistry()->translation->translate('Cannot find service'));
             }
-            $service = new $service($response);
+            $service = new $service($request, $response);
             return $service->run($this->transformActionName($action));
         });
     }

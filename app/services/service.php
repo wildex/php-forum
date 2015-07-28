@@ -7,7 +7,9 @@ namespace services;
 
 use core;
 
-use \klein\Response;
+use models;
+
+use \klein\Response, \klein\Request;
 
 abstract class Service {
 
@@ -16,10 +18,13 @@ abstract class Service {
     protected $_data = array();
 
     protected $_response;
+    protected $_request;
 
-    public function __construct(Response $response) {
-        $this->_response = $response;
-        $this->_view = new core\View();
+    public function __construct(Request $request, Response $response) {
+        $this->_request     = $request;
+        $this->_response    = $response;
+        $this->_view        = new core\View();
+        $this->_model       = new models\Model(new core\Mongodb());
     }
 
     /**
@@ -31,7 +36,7 @@ abstract class Service {
     public function run($action = null) {
 
         if(!method_exists($this, $action)) {
-            throw new core\SystemException(getRegistry()->get('translation')->translate('Not found.'), core\SystemException::ERR_404);
+            throw new core\SystemException(getRegistry()->translation->translate('Not found.'), core\SystemException::ERR_404);
         }
 
         $this->_view->setTemplate(

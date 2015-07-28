@@ -16,7 +16,7 @@ class Mongodb extends DBDriver{
                 $params['password'],
                 $params['host'],
                 $params['port'],
-                $params['db']
+                $params['auth_db']
         );
         $this->_connection =  new \MongoClient($url);
     }
