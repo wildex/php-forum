@@ -2,3 +2,5 @@
 .idea
 # Libs
 vendor
+# Cache
+template/cache
