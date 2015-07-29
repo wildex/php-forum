@@ -5,6 +5,7 @@
 
 namespace services;
 
+use core\Service;
 
 class Forum extends Service {
 }

@@ -25,7 +25,7 @@ class FrontController {
     private function registerRoutes() {
         $this->_router->respond('/[a:service]?/[*:action]?/[i:id]?/', function ($request, $response) {
             // Define default params
-            $default_params = getRegistry()->get('config')->get('system.default_service');
+            $default_params = getRegistry()->get('config')->get('default_service');
             list($service, $action) = array_values($default_params);
             $service = $request->service ?: $service;
             $action = $request->action ?: $action;
@@ -42,6 +42,7 @@ class FrontController {
     private function registerHelpers() {
         getRegistry()->set('config', new Config());
         getRegistry()->set('translation', new Translation());
+        getRegistry()->set('user', new AuthUser());
     }
 
     private function transformActionName($action) {

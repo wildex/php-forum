@@ -5,6 +5,7 @@
 
 namespace services;
 
+use core\Service;
 
 class Post extends Service{
 

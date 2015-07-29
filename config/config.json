@@ -9,10 +9,12 @@
       "db": "forum"
     }
   },
-  "system" : {
-    "default_service" : {
-      "service" : "Forum",
-      "action" : "read"
-    }
+  "redis": {
+    "host": "127.0.0.1",
+    "port": "6379"
+  },
+  "default_service" : {
+    "service" : "Forum",
+    "action" : "read"
   }
 }

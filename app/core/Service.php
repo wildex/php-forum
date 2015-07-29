@@ -3,9 +3,7 @@
  * @class services\Service
  */
 
-namespace services;
-
-use core;
+namespace core;
 
 use models;
 
@@ -23,8 +21,7 @@ abstract class Service {
     public function __construct(Request $request, Response $response) {
         $this->_request     = $request;
         $this->_response    = $response;
-        $this->_view        = new core\View();
-        $this->_model       = new models\Model(new core\Mongodb());
+        $this->_view        = new View();
     }
 
     /**
@@ -36,11 +33,11 @@ abstract class Service {
     public function run($action = null) {
 
         if(!method_exists($this, $action)) {
-            throw new core\SystemException(getRegistry()->translation->translate('Not found.'), core\SystemException::ERR_404);
+            throw new SystemException(getRegistry()->translation->translate('Not found.'), SystemException::ERR_404);
         }
 
         $this->_view->setTemplate(
-            strtolower(__CLASS__ . DIRECTORY_SEPARATOR . $action . '.' . core\View::TPL_FILE_EXTENSION)
+            strtolower(__CLASS__ . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
         );
 
         call_user_func(array($this, $action));

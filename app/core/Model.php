@@ -1,15 +1,16 @@
 <?php
-namespace models;
-
-use core;
+/**
+ * @class \core\Model
+ */
+namespace core;
 
 class Model {
 
-    private $_driver;
+    protected $_driver;
 
     protected $_table;
 
-    public function __construct(core\DBDriver $driver) {
+    public function __construct(DBDriver $driver) {
         $this->_driver = $driver;
     }
 
