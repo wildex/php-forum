@@ -14,19 +14,19 @@ class Model {
         $this->_driver = $driver;
     }
 
-    public function create() {
+    public function create($params) {
 
     }
 
-    public function read() {
+    public function read($params) {
 
     }
 
-    public function update() {
+    public function update($params) {
 
     }
 
-    public function delete() {
+    public function delete($params) {
 
     }
 }

@@ -22,6 +22,7 @@ abstract class Service {
         $this->_request     = $request;
         $this->_response    = $response;
         $this->_view        = new View();
+        $this->_model       = $this->createModel();
     }
 
     /**
@@ -48,19 +49,13 @@ abstract class Service {
         // echo json_encode($this->_data);
     }
 
-    protected function create() {
+    abstract protected function create();
 
-    }
+    abstract protected function read();
 
-    protected function read() {
+    abstract protected function update();
 
-    }
+    abstract protected function delete();
 
-    protected function update() {
-
-    }
-
-    protected function delete() {
-
-    }
+    abstract protected function createModel();
 }

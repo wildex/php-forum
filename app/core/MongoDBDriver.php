@@ -6,7 +6,7 @@
 namespace core;
 
 
-class Mongodb extends DBDriver {
+class MongoDBDriver extends DBDriver {
 
     public function __construct() {
         $params = getRegistry()->config->get('database.mongo');

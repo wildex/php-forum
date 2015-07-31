@@ -1,5 +1,6 @@
 {
   "database" : {
+    "default_driver" : "MYSQLBDriver",
     "mongo" : {
       "host" : "127.0.0.1",
       "port" : "27017",
@@ -7,6 +8,13 @@
       "password" : "admin",
       "auth_db": "admin",
       "db": "forum"
+    },
+    "sql" : {
+      "host" : "127.0.0.1",
+      "port" : "3306",
+      "user" : "root",
+      "password" : "",
+      "db": "php_forum"
     }
   },
   "redis": {
