@@ -7,22 +7,24 @@ namespace core;
 
 use models;
 
-use \klein\Response, \klein\Request;
+use \klein\Response, \klein\Request, \klein\ServiceProvider as Helper;
 
 abstract class Service {
 
     protected $_model;
     protected $_view;
+    protected $_helper;
     protected $_data = array();
 
     protected $_response;
     protected $_request;
 
-    public function __construct(Request $request, Response $response) {
+    public function __construct(Request $request, Response $response, Helper $helper) {
         $this->_request     = $request;
         $this->_response    = $response;
         $this->_view        = new View();
         $this->_model       = $this->createModel();
+        $this->_helper      = $helper;
     }
 
     /**
@@ -34,11 +36,11 @@ abstract class Service {
     public function run($action = null) {
 
         if(!method_exists($this, $action)) {
-            throw new exception\SystemException(getRegistry()->translation->translate('Not found.'), exception\SystemException::ERR_404);
+            throw new exception\SystemException(R()->translation->translate('Not found.'), exception\SystemException::ERR_404);
         }
 
         $this->_view->setTemplate(
-            strtolower(__CLASS__ . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
+            strtolower(static::class . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
         );
 
         call_user_func(array($this, $action));

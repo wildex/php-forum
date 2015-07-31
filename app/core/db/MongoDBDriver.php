@@ -9,7 +9,7 @@ namespace core\db;
 class MongoDBDriver extends DBDriver {
 
     public function __construct() {
-        $params = getRegistry()->config->get('database.mongo');
+        $params = R()->config->get('database.mongo');
         $url =  sprintf(
             'mongodb://%s:%s@%s:%d/%s',
                 $params['user'],

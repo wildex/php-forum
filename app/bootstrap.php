@@ -13,3 +13,12 @@ function getRegistry() {
     }
     return $r;
 }
+
+/**
+ * Shortcut for getRegistry()
+ *
+ * @return \core\Registry
+ */
+function R() {
+    return getRegistry();
+}

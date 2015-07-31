@@ -26,7 +26,7 @@ class RedisSessionHandler implements \SessionHandlerInterface {
     protected $prefix;
 
     public function __construct() {
-        $redis_params = getRegistry()->config->get('redis');
+        $redis_params = R()->config->get('redis');
         $redis = new \Redis();
         $redis->connect($redis_params['host'], $redis_params['port']);
         $this->redis_client = $redis;

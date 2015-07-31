@@ -8,7 +8,7 @@ namespace core\db;
 
 class MYSQLDBDriver extends DBDriver {
     protected function __construct() {
-        $options = getRegistry()->config->get('database.sql');
+        $options = R()->config->get('database.sql');
 
         $dsn = sprintf(
             'mysql:dbname=%s;host=%s;port=%s',

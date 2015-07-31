@@ -21,7 +21,7 @@ class AuthUser {
     private function loadUserData() {
         if(isset($_SESSION['uid'])) {
             $this->_user_data = $this->_user_model->read(
-                [ 'where' => [ 'user_id' => $_SESSION['uid'] ] ]
+                [ 'where' => [ 'user_id' => (int)$_SESSION['uid'] ] ]
             );
         }
     }
@@ -31,12 +31,12 @@ class AuthUser {
             [ 'where' => [ 'user_name' => $user_name ] ]
         );
 
-        if(password_verify($password, $user_data['password'])) {
+        if(!empty($user_data) && password_verify($password, $user_data['password'])) {
             // just in case removing password from user data array
             unset($user_data['password']);
 
             $this->_user_data = $user_data;
-            $_SESSION['uid'] = $user_data['id'];
+            $_SESSION['uid'] = (int)$user_data['id'];
         }
     }
 
