@@ -5,7 +5,7 @@
 
 namespace services;
 
-use core\MYSQLDBDriver;
+use core\db\MYSQLDBDriver;
 use core\Service;
 
 class Forum extends Service {

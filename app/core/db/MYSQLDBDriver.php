@@ -1,9 +1,9 @@
 <?php
 /**
- * @class \core\PDODBDriver
+ * @class \core\db\PDODBDriver
  */
 
-namespace core;
+namespace core\db;
 
 
 class MYSQLDBDriver extends DBDriver {

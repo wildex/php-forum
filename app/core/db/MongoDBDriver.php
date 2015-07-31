@@ -1,9 +1,9 @@
 <?php
 /**
- * @class core\Mongodb
+ * @class \core\db\Mongodb
  */
 
-namespace core;
+namespace core\db;
 
 
 class MongoDBDriver extends DBDriver {

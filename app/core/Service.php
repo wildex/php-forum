@@ -29,12 +29,12 @@ abstract class Service {
      * Return html page, or just json data.
      *
      * @param $action string action name (class method to call)
-     * @throws \core\SystemException
+     * @throws \core\exception\SystemException
      */
     public function run($action = null) {
 
         if(!method_exists($this, $action)) {
-            throw new SystemException(getRegistry()->translation->translate('Not found.'), SystemException::ERR_404);
+            throw new exception\SystemException(getRegistry()->translation->translate('Not found.'), exception\SystemException::ERR_404);
         }
 
         $this->_view->setTemplate(

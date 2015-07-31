@@ -14,7 +14,16 @@ class AuthUser {
         session_set_save_handler(new RedisSessionHandler());
         session_start();
 
-        $this->_user_model = new \models\User(MYSQLDBDriver::getInstance());
+        $this->_user_model = new \models\User(db\MYSQLDBDriver::getInstance());
+        $this->loadUserData();
+    }
+
+    private function loadUserData() {
+        if(isset($_SESSION['uid'])) {
+            $this->_user_data = $this->_user_model->read(
+                [ 'where' => [ 'user_id' => $_SESSION['uid'] ] ]
+            );
+        }
     }
 
     public function login($user_name, $password) {

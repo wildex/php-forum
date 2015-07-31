@@ -2,9 +2,9 @@
 /**
  * Singleton
  *
- * @class models/DBDriver
+ * @class \core\db\DBDriver
  */
-namespace core;
+namespace core\db;
 
 
 abstract class DBDriver {

@@ -10,7 +10,7 @@ class Model {
 
     protected $_table;
 
-    public function __construct(DBDriver $driver) {
+    public function __construct(db\DBDriver $driver) {
         $this->_driver = $driver;
     }
 
