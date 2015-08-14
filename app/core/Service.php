@@ -40,7 +40,7 @@ abstract class Service {
         }
 
         $this->_view->setTemplate(
-            strtolower(static::class . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
+            strtolower(str_replace('\\', '/', static::class) . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
         );
 
         call_user_func(array($this, $action));

@@ -5,7 +5,6 @@
 
 namespace core\db;
 
-
 class MongoDBDriver extends DBDriver {
 
     public function __construct() {
@@ -21,27 +20,23 @@ class MongoDBDriver extends DBDriver {
         $this->_connection =  (new \MongoClient($url))->selectDB($params['db']);
     }
 
-    public function create($table, $params) {
-        $params = $this->parseParams($params);
+    protected function create($table, $params) {
         $this->_connection->$table->insert($params['data']);
     }
 
-    public function read($table, $params) {
-        $params = $this->parseParams($params);
+    protected function read($table, $params) {
         $this->_connection->$table->find($params['where']);
     }
 
-    public function update($table, $params) {
-        $params = $this->parseParams($params);
+    protected function update($table, $params) {
         $this->_connection->$table->find($params['where']);
     }
 
-    public function delete($table, $params) {
-        $params = $this->parseParams($params);
+    protected function delete($table, $params) {
         $this->_connection->$table->remove($params);
     }
 
-    protected function parseParams($params) {
+    public function query($type, $table, $params) {
         return $params;
     }
 }

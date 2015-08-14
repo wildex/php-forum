@@ -16,7 +16,7 @@ class View {
     public function __construct() {
         $twig_loader = new Twig_Loader_Filesystem(TEMPLATE_DIR);
         $this->_twig = new Twig_Environment($twig_loader, array(
-            'cache' => TEMPLATE_CACHE_DIR,
+            'cache' => false,
         ));
     }
 

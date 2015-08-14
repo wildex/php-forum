@@ -6,10 +6,14 @@
  */
 namespace core\db;
 
-
 abstract class DBDriver {
     protected $_db;
     protected static $_instance;
+
+    const TYPE_CREATE = 'create';
+    const TYPE_READ = 'read';
+    const TYPE_UPDATE = 'update';
+    const TYPE_DELETE = 'delete';
 
     public static function getInstance(){
         if(is_null(static::$_instance)) {
@@ -23,10 +27,10 @@ abstract class DBDriver {
     abstract protected function __construct();
 
 
-    abstract public function create($table, $params);
-    abstract public function read($table, $params);
-    abstract public function update($table, $params);
-    abstract public function delete($table, $params);
+    abstract protected function create($table, $params);
+    abstract protected function read($table, $params);
+    abstract protected function update($table, $params);
+    abstract protected function delete($table, $params);
 
-    abstract protected function parseParams($params);
+    abstract public function query($type, $table, $params);
 }
