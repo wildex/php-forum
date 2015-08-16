@@ -1,8 +1,6 @@
 <?php
 try {
-    require '../config/const.php';
-    require ROOT_DIR . '/vendor/autoload.php';
-    require ROOT_DIR . '/app/bootstrap.php';
+    require '../app/bootstrap.php';
 
     /**
      * App entry point

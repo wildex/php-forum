@@ -1,4 +1,8 @@
 <?php
+
+require '../config/const.php';
+require ROOT_DIR . '/vendor/autoload.php';
+
 /**
  * Load Registry and app config.
  */
