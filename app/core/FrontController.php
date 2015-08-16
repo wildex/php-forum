@@ -4,6 +4,9 @@ namespace core;
 use services;
 use Klein;
 
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+
 class FrontController {
     /**
      * @var Klein\Klein
@@ -43,6 +46,12 @@ class FrontController {
         R()->set('config', new Config());
         R()->set('translation', new Translation());
         R()->set('user', new AuthUser());
+        R()->set('DBEntity', $this->createDBEntityManager());
+    }
+
+    private function createDBEntityManager() {
+        $config = Setup::createAnnotationMetadataConfiguration(ENTITIES_DIR, IS_DEBUG_ENABLED);
+        return EntityManager::create(R()->config->get('database'), $config);
     }
 
     private function transformActionName($action) {

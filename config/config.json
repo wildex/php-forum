@@ -1,21 +1,11 @@
 {
   "database" : {
-    "default_driver" : "MYSQLBDriver",
-    "mongo" : {
-      "host" : "127.0.0.1",
-      "port" : "27017",
-      "user" : "admin",
-      "password" : "admin",
-      "auth_db": "admin",
-      "db": "forum"
-    },
-    "sql" : {
-      "host" : "127.0.0.1",
-      "port" : "3306",
-      "user" : "root",
-      "password" : "",
-      "db": "php_forum"
-    }
+    "driver": "pdo_mysql",
+    "host" : "127.0.0.1",
+    "port" : "3306",
+    "user" : "root",
+    "password" : "",
+    "db": "php_forum"
   },
   "redis": {
     "host": "127.0.0.1",

@@ -6,9 +6,7 @@
 namespace core;
 
 class AuthUser {
-    private $_user_model;
-
-    private $_user;
+    private $_user_data;
 
     public function __construct() {
         session_set_save_handler(new RedisSessionHandler());
