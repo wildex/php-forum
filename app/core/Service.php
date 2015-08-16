@@ -5,13 +5,10 @@
 
 namespace core;
 
-use models;
-
 use \klein\Response, \klein\Request, \klein\ServiceProvider as Helper;
 
 abstract class Service {
 
-    protected $_model;
     protected $_view;
     protected $_helper;
     protected $_data = array();
@@ -23,7 +20,6 @@ abstract class Service {
         $this->_request     = $request;
         $this->_response    = $response;
         $this->_view        = new View();
-        $this->_model       = $this->createModel();
         $this->_helper      = $helper;
     }
 
@@ -59,5 +55,4 @@ abstract class Service {
 
     abstract protected function delete();
 
-    abstract protected function createModel();
 }

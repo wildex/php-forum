@@ -5,7 +5,6 @@
 
 namespace services;
 
-use core\db\MYSQLDBDriver;
 use core\Service;
 
 class Forum extends Service {
@@ -24,9 +23,5 @@ class Forum extends Service {
 
     protected function delete() {
 
-    }
-
-    protected function createModel() {
-        return new \models\Forum(MYSQLDBDriver::getInstance());
     }
 }
