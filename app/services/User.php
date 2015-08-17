@@ -9,7 +9,6 @@ use core\Service;
 
 class User extends Service {
     protected function create() {
-
     }
 
     protected function read() {

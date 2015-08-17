@@ -14,5 +14,9 @@
   "default_service" : {
     "service" : "Forum",
     "action" : "read"
+  },
+  "application" : {
+    "name": "php forum",
+    "version": "0.0.0.0.1"
   }
 }

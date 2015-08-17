@@ -4,8 +4,10 @@ namespace core;
 use services;
 use Klein;
 
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
+use \Symfony\Component\Console,
+    \Doctrine\ORM\Tools\Console as DoctrineConsole,
+    \Doctrine\ORM\Tools\Setup,
+    \Doctrine\ORM\EntityManager;
 
 class FrontController {
     /**
@@ -16,13 +18,24 @@ class FrontController {
     const ACTION_NAME_SEPARATOR = '-';
 
     public function __construct() {
-        $this->_router = new Klein\Klein();
         $this->lazyLoad();
-        $this->registerRoutes();
     }
 
-    public function run() {
+    public function webRun() {
+        $this->lazyLoadWeb();
         $this->_router->dispatch();
+        $this->registerRoutes();
+        $this->_router = new Klein\Klein();
+    }
+
+
+    public function cli() {
+        $app_config = R()->config->get('application');
+        $application = new Console\Application($app_config['name'], $app_config['version']);
+        $helperSet = DoctrineConsole\ConsoleRunner::createHelperSet(R()->getDBEntity());
+        $application->setHelperSet($helperSet);
+        DoctrineConsole\ConsoleRunner::addCommands($application);
+        $application->run();
     }
 
     private function registerRoutes() {
@@ -42,15 +55,27 @@ class FrontController {
         });
     }
 
+    /**
+     * Lazy load for basic functionality
+     *
+     * @throws \Exception
+     */
     private function lazyLoad() {
         R()->set('config', new Config());
         R()->set('translation', new Translation());
-        R()->set('user', new AuthUser());
         R()->set('DBEntity', $this->createDBEntityManager());
     }
 
+    /**
+     * Additional lazy load, only for web part of
+     * application.
+     */
+    private function lazyLoadWeb() {
+        R()->set('user', new AuthUser());
+    }
+
     private function createDBEntityManager() {
-        $config = Setup::createAnnotationMetadataConfiguration(ENTITIES_DIR, IS_DEBUG_ENABLED);
+        $config = Setup::createAnnotationMetadataConfiguration(array(ENTITIES_DIR), IS_DEBUG_ENABLED);
         return EntityManager::create(R()->config->get('database'), $config);
     }
 

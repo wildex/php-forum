@@ -26,3 +26,17 @@ function getRegistry() {
 function R() {
     return getRegistry();
 }
+
+/**
+ * App entry point
+ * HERE WE GO
+ * ...
+ * AGAIN
+ */
+$fc = new core\FrontController();
+if(!isset($argv)) {
+    $fc->webRun();
+}
+else {
+    $fc->cli();
+}

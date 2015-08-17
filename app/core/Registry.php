@@ -37,4 +37,18 @@ class Registry {
     public function __get($key) {
         return $this->_registry[$key];
     }
+
+    /**
+     * Some function to load preset data
+     *in Front controller and to be able to autocomplete
+     */
+
+    /**
+     * Database entity manager
+     *
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getDBEntity() {
+        return $this->DBEntity;
+    }
 }
