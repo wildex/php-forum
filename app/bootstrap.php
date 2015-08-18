@@ -38,5 +38,5 @@ if(!isset($argv)) {
     $fc->webRun();
 }
 else {
-    $fc->cli();
+    $fc->cliRun();
 }

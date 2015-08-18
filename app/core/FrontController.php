@@ -29,7 +29,7 @@ class FrontController {
     }
 
 
-    public function cli() {
+    public function cliRun() {
         $app_config = R()->config->get('application');
         $application = new Console\Application($app_config['name'], $app_config['version']);
 
@@ -76,11 +76,21 @@ class FrontController {
         R()->set('user', new AuthUser());
     }
 
+    /**
+     * Factory method to create Doctrine entity manager
+     *
+     * @return EntityManager
+     * @throws \Doctrine\ORM\ORMException
+     */
     private function createDBEntityManager() {
         $config = Setup::createAnnotationMetadataConfiguration(array(ENTITIES_DIR), IS_DEBUG_ENABLED);
         return EntityManager::create(R()->config->get('database'), $config);
     }
 
+    /**
+     * @param $action
+     * @return string
+     */
     private function transformActionName($action) {
         $action = ucwords($action, self::ACTION_NAME_SEPARATOR);
         $action = str_replace(self::ACTION_NAME_SEPARATOR, '', $action);

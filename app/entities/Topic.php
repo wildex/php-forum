@@ -1,6 +1,6 @@
 <?php
 /**
- * @class \entities\Post
+ * @class \entities\Thread
  */
 
 namespace entities;
@@ -8,36 +8,31 @@ namespace entities;
 /**
  * @Entity
  */
-class Post {
+class Topic {
     /**
      * @Id
      * @Column(type="integer", length=10, nullable=false, options={"unsigned"=true})
      * @GeneratedValue
      */
-    protected $post_id;
+    protected $topic_id;
 
     /**
      * @Column(type="integer", length=10, nullable=false, options={"unsigned"=true})
      */
-    protected $topic_id;
+    protected $forum_id;
 
     /**
      * @Column(type="string", length=255, nullable=false)
      */
-    protected $post_title;
-
-    /**
-     * @Column(type="text", nullable=false)
-     */
-    protected $post_text;
+    protected $topic_title;
 
     /**
      * @Column(type="datetime", nullable=false)
      */
-    protected $post_date_created;
+    protected $topic_date_created;
 
     /**
      * @Column(type="datetime", nullable=false)
      */
-    protected $post_date_updated;
+    protected $topic_date_updated;
 }

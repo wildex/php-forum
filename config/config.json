@@ -5,7 +5,7 @@
     "port" : "3306",
     "user" : "root",
     "password" : "",
-    "db": "php_forum"
+    "dbname": "php_forum"
   },
   "redis": {
     "host": "127.0.0.1",
