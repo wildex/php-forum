@@ -23,9 +23,9 @@ class FrontController {
 
     public function webRun() {
         $this->lazyLoadWeb();
-        $this->_router->dispatch();
         $this->registerRoutes();
         $this->_router = new Klein\Klein();
+        $this->_router->dispatch();
     }
 
 
