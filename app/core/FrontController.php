@@ -32,9 +32,11 @@ class FrontController {
     public function cli() {
         $app_config = R()->config->get('application');
         $application = new Console\Application($app_config['name'], $app_config['version']);
+
         $helperSet = DoctrineConsole\ConsoleRunner::createHelperSet(R()->getDBEntity());
         $application->setHelperSet($helperSet);
         DoctrineConsole\ConsoleRunner::addCommands($application);
+
         $application->run();
     }
 
