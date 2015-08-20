@@ -3,7 +3,7 @@
 <head>
     {% block head %}
     <link rel="stylesheet" href="/static/system/css/main.css" />
-    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <title>{% block title %}{{ data.common.page_properties.title }}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>

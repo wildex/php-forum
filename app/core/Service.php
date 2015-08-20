@@ -11,7 +11,7 @@ abstract class Service {
 
     protected $_view;
     protected $_helper;
-    protected $_data = array();
+    protected $_data;
 
     protected $_response;
     protected $_request;
@@ -21,6 +21,7 @@ abstract class Service {
         $this->_response    = $response;
         $this->_view        = new View();
         $this->_helper      = $helper;
+        $this->_data        = new Data();
     }
 
     /**
@@ -41,10 +42,20 @@ abstract class Service {
 
         call_user_func(array($this, $action));
 
+        $this->setCommonData($action);
+
         // return html
-        echo $this->_view->render($this->_data);
+        echo $this->_view->render(['data' => $this->_data->getAll()]);
         // return json data
         // echo json_encode($this->_data);
+    }
+
+    protected function setCommonData($action) {
+        $this->_data->set('common', [
+            'page_properties' => [
+                'title' => R()->translation->translate($action)
+            ]
+        ]);
     }
 
     abstract protected function create();
