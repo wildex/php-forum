@@ -12,22 +12,17 @@ class AuthUser {
         session_set_save_handler(new RedisSessionHandler());
         session_start();
 
-        //$this->_user_model = new \models\User(db\MYSQLDBDriver::getInstance());
         $this->loadUserData();
     }
 
     private function loadUserData() {
         if(isset($_SESSION['uid'])) {
-            /*$this->_user_data = $this->_user_model->read(
-                [ 'where' => [ 'user_id' => (int)$_SESSION['uid'] ] ]
-            );*/
+            $this->_user_data = R()->getDBEntity()->find('User', (int)$_SESSION['uid']);
         }
     }
 
-    public function login($user_name, $password) {
-        /*$user_data = $this->_user_model->read(
-            [ 'where' => [ 'user_name' => $user_name ] ]
-        );*/
+    public function login($user_email, $password) {
+        $user_data = R()->getDBEntity()->getRepository('User')->findOneBy(array('user_email' => $user_email));
 
         if(!empty($user_data) && password_verify($password, $user_data['password'])) {
             // just in case removing password from user data array

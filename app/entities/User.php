@@ -7,6 +7,7 @@ namespace entities;
 
 /**
  * @Entity
+ * @Table(name="forum_user")
  */
 class User {
     /**

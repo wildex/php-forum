@@ -9,6 +9,7 @@ use core\Service;
 
 class User extends Service {
     protected function create() {
+
     }
 
     protected function read() {
@@ -24,8 +25,10 @@ class User extends Service {
     }
 
     protected function login() {
-        $this->_helper->validateParam('name', R()->translation->translate('Bad username'))->isAlpha();
-        $this->_helper->validateParam('password', R()->translation->translate('Bad password'))->isAlpha();
-        R()->user->login($this->_request->paramsGet()->name, $this->_request->paramsGet()->password);
+
+    }
+
+    protected function register() {
+
     }
 }
