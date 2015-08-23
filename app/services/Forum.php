@@ -10,7 +10,10 @@ use core\Service;
 class Forum extends Service {
 
     protected function create() {
-
+        $forum = new \entity\Forum(new \DateTime('now'));
+        $forum->setTitle($this->_request->param('title'));
+        R()->getDBEntity()->persist($forum);
+        R()->getDBEntity()->flush();
     }
 
     protected function read() {

@@ -63,7 +63,6 @@ class FrontController {
      * @throws \Exception
      */
     private function lazyLoad() {
-        R()->set('config', new Config());
         R()->set('translation', new Translation());
         R()->set('DBEntity', $this->createDBEntityManager());
     }

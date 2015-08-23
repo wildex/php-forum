@@ -1,39 +1,44 @@
 <?php
 /**
- * @class \entities\Thread
+ * @class \entity\Post
  */
 
-namespace entities;
+namespace entity;
 
 /**
  * @Entity
- * @Table(name="forum_topic")
+ * @Table(name="forum_post")
  */
-class Topic {
+class Post {
     /**
      * @Id
      * @Column(type="integer", length=10, nullable=false, options={"unsigned"=true})
      * @GeneratedValue
      */
-    protected $topic_id;
+    protected $post_id;
 
     /**
      * @Column(type="integer", length=10, nullable=false, options={"unsigned"=true})
      */
-    protected $forum_id;
+    protected $topic_id;
 
     /**
      * @Column(type="string", length=255, nullable=false)
      */
-    protected $topic_title;
+    protected $post_title;
+
+    /**
+     * @Column(type="text", nullable=false)
+     */
+    protected $post_text;
 
     /**
      * @Column(type="datetime", nullable=false)
      */
-    protected $topic_date_created;
+    protected $post_date_created;
 
     /**
      * @Column(type="datetime", nullable=false)
      */
-    protected $topic_date_updated;
+    protected $post_date_updated;
 }

@@ -1,9 +1,9 @@
 <?php
 /**
- * @class \entities\UserGroups
+ * @class \entity\UserGroups
  */
 
-namespace entities;
+namespace entity;
 
 /**
  * @Entity

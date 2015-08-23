@@ -1,9 +1,9 @@
 <?php
 /**
- * @class \entities\Forum
+ * @class \entity\Forum
  */
 
-namespace entities;
+namespace entity;
 
 /**
  * @Entity
@@ -31,4 +31,22 @@ class Forum {
      * @Column(type="datetime", nullable=false)
      */
     protected $forum_date_updated;
+
+    public function __construct(\DateTime $current_date) {
+        $this->forum_date_updated = $this->forum_date_created = $current_date;
+    }
+
+    /**
+     * @param $title string
+     */
+    public function setTitle($title) {
+        $this->forum_title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle() {
+        return $this->forum_title;
+    }
 }

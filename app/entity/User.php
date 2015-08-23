@@ -1,9 +1,9 @@
 <?php
 /**
- * @class \entities\User
+ * @class \entity\User
  */
 
-namespace entities;
+namespace entity;
 
 /**
  * @Entity

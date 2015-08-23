@@ -28,6 +28,19 @@ function R() {
 }
 
 /**
+ * Add config to lazy load
+ */
+
+R()->set('config', new \core\Config());
+
+/**
+ * Set default timezone
+ */
+
+$timezone = R()->config->get('application.timezone');
+date_default_timezone_set($timezone);
+
+/**
  * App entry point
  * HERE WE GO
  * ...
