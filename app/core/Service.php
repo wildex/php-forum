@@ -33,7 +33,13 @@ abstract class Service {
     public function run($action = null) {
 
         if(!method_exists($this, $action)) {
-            throw new exception\SystemException(R()->translation->translate('Not found.'), exception\SystemException::ERR_404);
+            throw new exception\SystemException(R()->translation->translate('Not found.'),
+                                                    exception\SystemException::ERR_404);
+        }
+
+        if(!AccessLevel::checkAccessLevel($this->requestAccessLevel(), R()->getUser()->getRights())) {
+            throw new exception\SystemException(R()->translation->translate('Access restricted.'),
+                                                    exception\SystemException::ERR_403);
         }
 
         $this->_view->setTemplate(
@@ -44,10 +50,15 @@ abstract class Service {
 
         $this->setCommonData($action);
 
+        // @TODO: Check if JSON data requested
         // return html
         echo $this->_view->render(['data' => $this->_data->getAll()]);
         // return json data
         // echo json_encode($this->_data);
+    }
+
+    protected function requestAccessLevel() {
+        return AccessLevel::ACCESS_VIEW;
     }
 
     protected function setCommonData($action) {

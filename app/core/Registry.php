@@ -51,4 +51,13 @@ class Registry {
     public function getDBEntity() {
         return $this->DBEntity;
     }
+
+    /**
+     * Instance of AuthUser
+     *
+     * @return \core\AuthUser
+     */
+    public function getUser() {
+        return $this->user;
+    }
 }

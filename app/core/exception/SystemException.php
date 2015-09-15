@@ -12,4 +12,5 @@ class SystemException extends \Exception {
      */
 
     const ERR_404 = 404;
+    const ERR_403 = 403;
 }

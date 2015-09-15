@@ -7,9 +7,9 @@ namespace entity;
 
 /**
  * @Entity
- * @Table(name="forum_user_groups")
+ * @Table(name="forum_user_group")
  */
-class UserGroups {
+class UserGroup {
 
     /**
      * @Id

@@ -18,6 +18,8 @@ class User {
     protected $user_id;
 
     /**
+     * @ManyToOne(targetEntity="UserGroup")
+     * @JoinColumn(name="group_id", referencedColumnName="group_id")
      * @Column(type="integer", length=10, nullable=false, options={"unsigned"=true})
      */
     protected $group_id;

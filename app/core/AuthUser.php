@@ -36,4 +36,8 @@ class AuthUser {
     public function logout() {
         session_destroy();
     }
+
+    public function getRights() {
+        return AccessLevel::ACCESS_ALL;
+    }
 }
