@@ -38,6 +38,6 @@ class AuthUser {
     }
 
     public function getRights() {
-        return AccessLevel::ACCESS_ALL;
+        return AccessLevel::ACCESS_READ;
     }
 }
