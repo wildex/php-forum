@@ -76,7 +76,7 @@ abstract class Service {
     }
 
     protected function requestAccessLevel($action) {
-        $access_level = AccessLevel::ACCESS_READ;
+        $access_level = AccessLevel::ACCESS_NONE;
 
         if(!empty($this->_config)
             && isset($this->_config['access'][$action])) {
