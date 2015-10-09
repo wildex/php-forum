@@ -10,6 +10,12 @@ namespace entity;
  * @Table(name="forum_user_group")
  */
 class UserGroup {
+    /**
+     * Default groups
+     */
+    const GROUP_GUEST = 2;
+    const GROUP_USER = 4;
+    const GROUP_ADMIN = 8;
 
     /**
      * @Id

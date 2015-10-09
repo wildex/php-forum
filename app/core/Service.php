@@ -41,10 +41,7 @@ abstract class Service {
                                                     exception\SystemException::ERR_404);
         }
 
-        if(!AccessLevel::checkAccessLevel($this->requestAccessLevel($action), R()->getUser()->getRights())) {
-            throw new exception\SystemException(R()->translation->translate('Access restricted.'),
-                                                    exception\SystemException::ERR_403);
-        }
+        $this->checkAccess($action);
 
         $this->_view->setTemplate(
             strtolower(str_replace('\\', DIRECTORY_SEPARATOR, static::class) . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
@@ -75,15 +72,21 @@ abstract class Service {
         return $config;
     }
 
-    protected function requestAccessLevel($action) {
-        $access_level = AccessLevel::ACCESS_NONE;
+    protected function checkAccess($action) {
+
+        $user_rights = R()->getUser()->getRights();
+
+        $access_level = AccessLevel::ACCESS_READ;
 
         if(!empty($this->_config)
             && isset($this->_config['access'][$action])) {
             $access_level = $this->_config['access'][$action];
         }
 
-        return $access_level;
+        if($user_rights < $access_level) {
+            throw new exception\SystemException(R()->translation->translate('Access restricted.'),
+                exception\SystemException::ERR_403);
+        }
     }
 
     protected function setCommonData($action) {
