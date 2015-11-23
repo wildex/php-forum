@@ -2,7 +2,10 @@
 {% block content %}
 <h1>{{ data.common.page_properties.title }}</h1>
 <form method="post" action="">
-    <input type="text" value="email"/>
-    <input type="text" value="password"/>
+    <input type="text" name="honey_name" class="hidden"/>
+    <input type="text" name="honey_name_second" placeholder="please, fill this">
+    <input type="text" name="email" placeholder="email"/>
+    <input type="text" name="password" placeholder="password"/>
+    <input type="submit" value="register"/>
 </form>
 {% endblock %}

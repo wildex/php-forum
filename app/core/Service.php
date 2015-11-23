@@ -43,11 +43,11 @@ abstract class Service {
 
         $this->checkAccess($action);
 
+        $this->setCommonData($this->createCommonData($action));
+
         $this->_view->setTemplate(
             strtolower(str_replace('\\', DIRECTORY_SEPARATOR, static::class) . DIRECTORY_SEPARATOR . $action . '.' . View::TPL_FILE_EXTENSION)
         );
-
-        $this->setCommonData($action);
 
         call_user_func(array($this, $action));
 
@@ -89,12 +89,17 @@ abstract class Service {
         }
     }
 
-    protected function setCommonData($action) {
-        $this->_data->set('common', [
+    protected function createCommonData($action) {
+        return [
             'page_properties' => [
-                'title' => R()->translation->translate($action)
+                'title' => R()->translation->translate($action),
+                'action' => strtolower(static::class) . '/' . $action . '/'
             ]
-        ]);
+        ];
+    }
+
+    protected function setCommonData($data) {
+        $this->_data->set('common', $data);
     }
 
     abstract protected function create();

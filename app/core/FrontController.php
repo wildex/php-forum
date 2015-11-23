@@ -41,7 +41,7 @@ class FrontController {
     }
 
     private function registerRoutes() {
-        $this->_router->respond('/[a:service]?/[*:action]?/[i:id]?/', function ($request, $response, $helper) {
+        $this->_router->respond(['GET', 'POST'], '/[a:service]?/[*:action]?/[i:id]?/', function ($request, $response, $helper) {
             // Define default params
             $default_params = R()->get('config')->get('default_service');
             list($service, $action) = array_values($default_params);
@@ -87,6 +87,9 @@ class FrontController {
     }
 
     /**
+     * Transform action name to camelCase (begins from small letter).
+     * And replace ACTION_NAME_SEPARATOR with empty string (remove it).
+     *
      * @param $action
      * @return string
      */

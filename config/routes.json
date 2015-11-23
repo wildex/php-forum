@@ -1,0 +1,7 @@
+[
+  {
+    "route": "/user/register/success/",
+    "service": "user",
+    "method": "registerSuccess"
+  }
+]
